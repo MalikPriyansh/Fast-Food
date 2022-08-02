@@ -4,15 +4,74 @@ import {itemContext} from '../App';
 function MenuCard({data}) {
     //console.log("menucard rendered");
     const iL = useContext(itemContext);
+
+
     
     const sendId=(id)=>{
         iL.method({type:'set_id',payload:id});
     }
 
-    const increment=()=>{
-        iL.method({type:'addItem',payload:data})
-        iL.method({type:'getTotalItems'})           
+
+    function increment(){
+            var quantity = sessionStorage.getItem(data.itemName);
+            if(quantity){
+                sessionStorage.removeItem(data.itemName);
+                quantity++;
+                sessionStorage.setItem(data.itemName,quantity);
+                var totalprice = parseInt(sessionStorage.getItem("totalprice"));
+                totalprice+=data.price;
+                sessionStorage.removeItem("totalprice");
+                sessionStorage.setItem("totalprice",totalprice);
+            }
+            else
+            {
+                sessionStorage.setItem(data.itemName,1);
+                totalprice = parseInt(sessionStorage.getItem("totalprice"));
+                if(totalprice)
+                {
+                    totalprice+=data.price;
+                    sessionStorage.removeItem("totalprice");
+                    sessionStorage.setItem("totalprice",totalprice);
+                }
+                else{
+                    totalprice=0;
+                    totalprice+=data.price;
+                    sessionStorage.removeItem("totalprice");
+                    sessionStorage.setItem("totalprice",totalprice);
+                }
+            }
+    }
+
+    const decrement = ()=>{
+        var quantity = sessionStorage.getItem(data.itemName);
+        if(quantity)
+        {
+            sessionStorage.removeItem(data.itemName);
+            quantity--;
+            if(quantity==0)
+            {
+                sessionStorage.removeItem(data.itemName);
+                var totalprice = parseInt(sessionStorage.getItem("totalprice"));
+                totalprice-=data.price;
+                sessionStorage.removeItem("totalprice");
+                sessionStorage.setItem("totalprice",totalprice);
+            }
+            else
+            {
+                sessionStorage.setItem(data.itemName,quantity);
+                var totalprice = parseInt(sessionStorage.getItem("totalprice"));
+                totalprice-=data.price;
+                sessionStorage.removeItem("totalprice");
+                sessionStorage.setItem("totalprice",totalprice);
+            }
+            
+        }
+        else 
+        {
+            sessionStorage.removeItem(data.itemName);
+        }
     };
+   
    
 
     const colorCircle = data.vegan.toLowerCase() ==="veg" ? <i className="bi bi-circle-fill greenColor"></i> :
@@ -28,7 +87,14 @@ function MenuCard({data}) {
                <div>{data.description?? ''}</div>
                </div>
                <div className="py-2">&#8377;{`${data.price}.00`}</div>
-                <button type="button" className="btn btn-outline-warning mt-auto p-2 w-50 addCart" onClick={increment}>Add to cart</button>
+               <div>
+                    {sessionStorage.getItem(data.itemName)!=0 && sessionStorage.getItem(data.itemName)!==null? (
+                        <div>
+                    <button type="button" className="btn btn-primary  p-2 w-50 addCart" onClick={increment}>+</button>
+                    <button type="button" className="btn btn-primary  p-2 w-50 addCart" onClick={decrement}>-</button> </div>):(
+                    <button type="button" className="btn btn-outline-warning mt-auto p-2 w-50 addCart" onClick={increment}>Add to cart</button>)}
+               </div>
+              
     </div>
            <div className="menuCardImg position-relative">
                
@@ -41,4 +107,5 @@ function MenuCard({data}) {
     )
 }
 
-export default React.memo(MenuCard);
+
+export default MenuCard;

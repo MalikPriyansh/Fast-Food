@@ -1,3 +1,8 @@
+html {
+  scroll-padding-top: 260px; /* height of sticky header */
+} 
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -32,7 +37,10 @@ code {
   background-color: whitesmoke;
 }
 
-
+.c_img{
+  height:180px;
+  width:100%;
+}
 .empty-div{
   padding-top: 8px;
   padding-bottom: 8px;
@@ -179,7 +187,7 @@ a.hoverMe:hover{
     display:none;
   }
   .addCart{
-    width:100% !important;
+    width:80% !important;
   }
   .deliveryInfo{
     width:100% !important;
@@ -341,15 +349,23 @@ div.scrollmenu a {
 div.scrollmenu a:hover {
   background-color: #777;
 }
+
+.collapse-nav{
+  width:"60%";
+}
+
+.form-control{
+  padding-left:"50%";
+}
 .catContainer{
   position:fixed!important;
   z-index:2;
-  top:84px;
+  top:181px;
   width:100%;
 }
 .menuLayout{
   padding-bottom: 55px !important;
-  top : 100px;
+  top : 250px;
   position:absolute;
   min-height:70vh;
 }

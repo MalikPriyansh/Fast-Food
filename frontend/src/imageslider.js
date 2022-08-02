@@ -20,15 +20,13 @@ function ControlledCarousel() {
       <Carousel.Item>
         <img 
           src={img1}
-          style={{height:"250px"}}
-          width = "100%"
+          className="c_img"
           alt="First slide"
         />
       </Carousel.Item>
       <Carousel.Item>
       <img
-          style={{height:"250px"}}
-          width = "100%"
+          className="c_img"
           src={img2}
           alt="Second slide"
         />
@@ -36,8 +34,7 @@ function ControlledCarousel() {
       <Carousel.Item>
       <img 
           src={img3}
-          style={{height:"250px"}}
-          width = "100%"
+          className="c_img"
           alt="Third slide"
         />
       </Carousel.Item>

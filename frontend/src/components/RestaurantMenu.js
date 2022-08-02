@@ -1,6 +1,7 @@
 import React, {useEffect,useState} from 'react'
 import axios from 'axios';
 import MenuCard from './MenuCard';
+import Cart from './footer';
 //import {itemContext} from '../App';
 var store =require('store');
 
@@ -42,6 +43,7 @@ function RestaurantMenu() {
         </div>
         </div> )
         )}
+        <Cart></Cart>
         </div>) :
         (
           <div className="spinnerBlock d-flex justify-content-center">

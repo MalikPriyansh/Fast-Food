@@ -1,4 +1,5 @@
 import React from 'react'
+import RestaurantMenu from './RestaurantMenu';
 
 function CategoryBar() {
   
@@ -6,7 +7,7 @@ function CategoryBar() {
     return (
         <div className="catContainer" id="categoryBar" >
 
-{/* <div className="scrollmenu">
+ <div className="scrollmenu">
 
           <a className="nav-link" href="#Break Your Fast">Break Your Fast</a>
         
@@ -20,8 +21,8 @@ function CategoryBar() {
         
       
   
-</div> */}
-        <nav className="navbar navbar-expand-lg navbar-light bg-light ">
+</div> 
+       {/* <nav className="navbar navbar-expand-lg navbar-light bg-light ">
   <div className="container">
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
@@ -57,8 +58,8 @@ function CategoryBar() {
       </ul>
     </div>
   </div>
-</nav>
-{/* <div className='empty-div'></div> */}
+    </nav>*/}
+<div className='empty-div'></div> 
 </div>
     )
 }

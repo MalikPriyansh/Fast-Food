@@ -4,7 +4,16 @@ import React,{useReducer} from 'react';
 import axios from 'axios';
 import Menu from "./components/Menu";
 import CategoryBar from "./components/CategoryBar";
-import RestaurantMenu from "./components/RestaurantMenu";
+import {BrowserRouter as Router ,Routes , Route, BrowserRouter} from "react-router-dom";
+import DashboardLayout from "./components/DashboardLayout";
+import Bill from "./components/bill";
+// import Navbar from "react-bootstrap/Navbar";
+// import Form from "react-bootstrap/Form";
+// import Container from "react-bootstrap/Container";
+// import Button from "react-bootstrap/Button";
+// import RestaurantMenu from "./components/RestaurantMenu";
+//import CheckNavbar from "./components/CheckNavbar";
+//import Cart from './components/Cart';
 var store = require('store');
 
 export const itemContext = React.createContext();
@@ -102,6 +111,8 @@ const myReducer= (state=initialState, action)=>{
                     
                     store.clearAll();
                     return {...initialState, loggedIn:false, list:[],totalItems:0,totalCost:0}
+
+                    
                     
                      //return {...state,}
                        
@@ -120,13 +131,15 @@ function App() {
   {
     return (
       <div>
-        <header>
-            <CategoryBar></CategoryBar>
-        </header>
-        <main>
-            <Menu></Menu>
-        </main>
-        
+        <itemContext.Provider value={{state: myState, method:dispatch}}>
+              <BrowserRouter>
+                <Routes>
+                  <Route path="/" element={<Menu data={myState}></Menu> } />
+                  <Route path="/bill" element={<Bill></Bill>} />
+                </Routes>
+              </BrowserRouter>
+        </itemContext.Provider>
+
       </div>
   );
   }
